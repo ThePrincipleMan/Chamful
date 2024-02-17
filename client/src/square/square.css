@@ -1,0 +1,34 @@
+.square{
+    background-color: wheat;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid;
+    border-color: black;
+}
+
+.subsquare{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-width: 4vw;
+    min-height: 4vh;
+}
+
+.neutral{
+    background-color: none;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.green{
+    background-color: green;
+}
+
+.red{
+    background-color: red;
+}
