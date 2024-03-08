@@ -23,8 +23,12 @@ for (let i = 0; i < 5; i += 1) {
         tmpdict["green"] = []
         tmpdict["blue"] = []
         // this part temperory for debugging easyness
-        // if (i === 4 && j === 2)
+        // if (i === 4 && j === 2){
         //     tmpdict["yellow"] = [1, 1, 1, 1]
+        //     tmpdict["green"] = [1, 1, 1, 1]
+        //     tmpdict["blue"] = [1, 1, 1, 1]
+        //     tmpdict["red"] = [1, 1, 1, 1]
+        // }
         // else if (i === 2 && j === 0)
         //     tmpdict["green"] = [1, 1, 1, 1]
         // else if (i === 2 && j === 4)
@@ -50,9 +54,14 @@ function PlayScreen() {
     const [gameState, setGameState] = useState(boardform)
     const [tokens, setTokens] = useState(tokenPosition)
     const [userName, setUserName] = useState("")
+    const [gamecode, setGamecode] = useState(0)
     const [room, setRoom] = useState()
     const [turn, setTurn] = useState()
     const [die, setDie] = useState(0)
+    const [zero, setZero] = useState("s")
+    const [one, setOne] = useState("s")
+    const [two, setTwo] = useState("s")
+    const [three, setThree] = useState("s")
     //const socket = io("http://localhost:3001")
     //const [socket, setSocket] = useState(io.connect("http://localhost:3001"))
 
@@ -62,6 +71,7 @@ function PlayScreen() {
     useEffect(() => {
         socket.on('gameCode', gameCode => {
             console.log(gameCode)
+            setGamecode(gameCode)
             // do something to display this to user
         })
 
@@ -73,6 +83,10 @@ function PlayScreen() {
             //console.log(userColor)
             setTokens(data.tokenpos)
             setTurn(data.turn)
+            setZero(data.zero)
+            setOne(data.one)
+            setTwo(data.two)
+            setThree(data.three)
         })
 
         socket.on('updateDie', data => {
@@ -110,7 +124,7 @@ function PlayScreen() {
         socket.emit('newGame', userName)
         console.log("flag2")
         document.getElementById('joinwindow').style.display = "none"
-        document.getElementById('gamescreen').style.display = "block"
+        document.getElementById('gamescreen').style.display = "flex"
     }
 
     function joinRoom() {
@@ -122,7 +136,7 @@ function PlayScreen() {
         socket.emit('joinGame', data)
         console.log('flag4')
         document.getElementById('joinwindow').style.display = "none"
-        document.getElementById('gamescreen').style.display = "block"
+        document.getElementById('gamescreen').style.display = "flex"
     }
 
     function rollDie() {
@@ -153,27 +167,23 @@ function PlayScreen() {
     }
 
     return (
-        <>
+        <div id="playscreenpage">
             <div id='joinwindow'>
                 <div id="joinoption">
-                    <h2>Welcome to Chamful</h2>
-                    <div>
-                        <div>
-                            <button onClick={() => {
-                                document.getElementById('joinoption').style.display = "none"
-                                document.getElementById('createroom').style.display = "block"
-                            }}>Create new game</button>
-                        </div>
-                        <div>
-                            <button onClick={() => {
-                                document.getElementById('joinoption').style.display = "none"
-                                document.getElementById('joinroom').style.display = "block"
-                            }}>Join an existing game</button>
-                        </div>
+                    <h2>Welcome to Chamful!</h2>
+                    <div className='optionwrapper'>
+                        <div className='button' onClick={() => {
+                            document.getElementById('joinoption').style.display = "none"
+                            document.getElementById('createroom').style.display = "flex"
+                        }}>Create new game</div>
+                        <div className='button' onClick={() => {
+                            document.getElementById('joinoption').style.display = "none"
+                            document.getElementById('joinroom').style.display = "flex"
+                        }}>Join an existing game</div>
                     </div>
                 </div>
                 <div id="createroom">
-
+                    <h3>What name do you wish to take?</h3>
                     <input
                         type="text"
                         placeholder='UserName'
@@ -182,11 +192,12 @@ function PlayScreen() {
                             setUserName(e.target.value)
                         }}
                     />
-                    <div onClick={createRoom}>Create</div>
+                    <div className="button" onClick={createRoom}>Create</div>
 
                 </div>
                 <div id="joinroom">
-                    <form>
+                    <h3>Input your username and room code carefullly</h3>
+                    <form className='joinroomform'>
                         <input
                             type="text"
                             placeholder='UserName'
@@ -205,38 +216,48 @@ function PlayScreen() {
                                 setRoom(e.target.value)
                             }}
                         />
-                        <div onClick={joinRoom}>Join</div>
+                        <div className='button' onClick={joinRoom}>Join</div>
                     </form>
                 </div>
             </div>
 
             <div id='gamescreen'>
-                <div className='board'>
-                    <div className='square-wrapper'>
-                        {gameState.map((arr, rowIndex) =>
-                            arr.map((e, colIndex) => {
-                                return (
-                                    <div onClick={() => handleMove(rowIndex, colIndex)}>
-                                        <Square
-                                            content={e}
-                                            row={rowIndex}
-                                            col={colIndex}
-                                            tokens={tokens}
-                                            setTokens={setTokens}
-                                        />
-                                    </div>
-                                );
-                            }
-                            )
-                        )}
+                <div className='leftscreen'>
+                    <div className='board'>
+                        <div className='square-wrapper'>
+                            {gameState.map((arr, rowIndex) =>
+                                arr.map((e, colIndex) => {
+                                    return (
+                                        <div onClick={() => handleMove(rowIndex, colIndex)}>
+                                            <Square
+                                                content={e}
+                                                row={rowIndex}
+                                                col={colIndex}
+                                                tokens={tokens}
+                                                setTokens={setTokens}
+                                            />
+                                        </div>
+                                    );
+                                })
+                            )}
+                        </div>
                     </div>
                 </div>
-                <div id='dice'>
-                    <div>{die}</div>
+                <div className='rightscreen'>
+                    <div className='gamecode'>{gamecode}</div>
+                    <div className='playerlist'>
+                        <div className='yellow'>{zero}</div>
+                        <div className='green'>{one}</div>
+                        <div className='red'>{two}</div>
+                        <div className='blue'>{three}</div>
+                    </div>
+                    <div id='dice'>
+                        <div>{die}</div>
                     <div onClick={rollDie}>Roll</div>
                 </div>
+                </div>
             </div>
-        </>
+        </div>
     );
 }
 

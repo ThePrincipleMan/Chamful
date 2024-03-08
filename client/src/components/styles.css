@@ -4,14 +4,88 @@
     /* gap: .2rem;   */
 }
 
+#playscreenpage{
+    background-color: blueviolet;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#joinwindow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.optionwrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.optionwrapper > *{
+    margin: .3rem;
+    padding: .5rem;
+}
+
+#joinoption{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#createroom, #joinroom{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.button{
+    padding: 1rem;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.joinroomform{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.joinroomform > *{
+    padding: .4rem;
+    margin: .4rem;
+}
+
 #gamescreen{
     display: none;
+    justify-content: center;
+    align-items: center;
 }
 
-#createroom{
-    display: none;
+.playerlist{
+    display: flex;
+    flex-direction: column;
 }
 
-#joinroom{
-    display: none;
+.yellow{
+    background-color: yellow;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.red{
+    background-color: red;
+}
+
+.green{
+    background-color: green;
 }

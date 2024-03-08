@@ -85,6 +85,7 @@ io.on("connection", client => {
 
         clienttoRoom[client.id] = roomName
         client.join(roomName)
+        client.emit('gameCode', roomName)
         const clientinfo = {
             name: userName,
             cliendid: client.id,  
@@ -104,6 +105,10 @@ io.on("connection", client => {
             const startdata = {
                 tokenpos: gameState[roomName],
                 turn: Rooms[roomName][0].color,
+                zero: Rooms[roomName][0].name,
+                one: Rooms[roomName][1].name,
+                two: Rooms[roomName][2].name,
+                three: Rooms[roomName][3].name,
             }
             console.log('bflag8')
             io.sockets.in(roomName).emit('startGame', startdata)

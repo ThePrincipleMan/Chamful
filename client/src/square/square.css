@@ -1,6 +1,8 @@
 .square{
     background-color: wheat;
     display: grid;
+    height: 8vw;
+    width: 8vw;
     grid-template-columns: 1fr 1fr;
     border: 1px solid;
     border-color: black;
@@ -8,9 +10,9 @@
 
 .subsquare{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-width: 4vw;
-    min-height: 4vh;
+    grid-template-columns: .5fr .5fr;
+    /* min-width: 4vw;
+    min-height: 4vh; */
 }
 
 .neutral{
