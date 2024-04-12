@@ -1,7 +1,6 @@
 import React from 'react'
 import SubSquare from './subsquare'
 import './square.css'
-import Token from '../tokens/token'
 
 const square = ({
     content,
@@ -12,24 +11,24 @@ const square = ({
 }) => {
     let cellcolor = ["neutral","neutral","neutral","neutral"];
     if (row === 0 && col === 2){
-        cellcolor = ['red', 'red', 'red', 'red']
+        cellcolor = ['redbg', 'redbg', 'redbg', 'redbg']
     }
     else if(row === 2 && col === 0){
-        cellcolor = ['green', 'green', 'green', 'green']
+        cellcolor = ['greenbg', 'greenbg', 'greenbg', 'greenbg']
     } 
     else if(row === 2 && col === 4){
-        cellcolor = ['blue', 'blue', 'blue', 'blue']
+        cellcolor = ['bluebg', 'bluebg', 'bluebg', 'bluebg']
     }
     else if(row === 4 && col === 2){
-        cellcolor = ['yellow', 'yellow', 'yellow', 'yellow']
+        cellcolor = ['yellowbg', 'yellowbg', 'yellowbg', 'yellowbg']
     }
     else if(row === 2 && col === 2){
-        cellcolor[0] = 'green'
-        cellcolor[1] = 'red'
-        cellcolor[2] = 'yellow'
-        cellcolor[3] = 'blue'
+        cellcolor[0] = 'greenbg'
+        cellcolor[1] = 'redbg'
+        cellcolor[2] = 'yellowbg'
+        cellcolor[3] = 'bluebg'
     }
-    
+
     return (
         <>
             <div className={`square`}>

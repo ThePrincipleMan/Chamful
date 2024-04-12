@@ -23,6 +23,7 @@ let gameState = {}
 let dieState = {}  
 let turn = {}
 let firstBlood = {}
+let turnCount = {}
 
 io.on("connection", client => {
     console.log("New connection formed")
@@ -42,6 +43,7 @@ io.on("connection", client => {
         Rooms[roomName] = {}
         Rooms[roomName][0] = clientinfo
         turn[roomName] = 0
+        turnCount[roomName] = [1,0,0,0]
         dieState[roomName] = 0
         firstBlood[roomName] = [false,false,false,false]
         client.join(roomName)
@@ -105,6 +107,7 @@ io.on("connection", client => {
             const startdata = {
                 tokenpos: gameState[roomName],
                 turn: Rooms[roomName][0].color,
+                turncnt: turnCount[roomName][0],
                 zero: Rooms[roomName][0].name,
                 one: Rooms[roomName][1].name,
                 two: Rooms[roomName][2].name,
@@ -118,11 +121,16 @@ io.on("connection", client => {
     client.on('rollDie', data => {
         const roomName = clienttoRoom[client.id]
         dieState[roomName] = dieValues[data.idx]
+        turnCount[roomName][data.turn] -= 1
+        if(dieValues[data.idx] === 4 || dieValues[data.idx] === 8){
+            turnCount[roomName][data.turn] += 1
+        } 
         //console.log('inside rolldie')
         const rdata = {
             die: dieValues[data.idx],
             //turn: (data.turn + 1)%4,
             turn: data.turn,  // dont update turn just now
+            turncnt: turnCount[roomName][data.turn]
         }
         io.sockets.to(roomName).emit('updateDie', rdata)
     })
@@ -135,15 +143,32 @@ io.on("connection", client => {
         const currentState = gameState[roomName]
         // if(Object.keys(gameState[roomName][data.row][data.col][colorArray[player]]).length === 0)
         //     return
-        const newgameState = playerMove(data.row, data.col, die, player, currentState, fblood)
+        let result = playerMove(data.row, data.col, die, player, currentState, fblood) 
+        const newgameState = result.tokenpos
+        if(Object.keys(newgameState[2][2][colorArray[player]]) === 4){
+            const ndata = {
+                winner: player,
+            }
+            io.sockets.to(roomName).emit('endGame', ndata)
+            return
+        }
+        if(result.killsome){
+            turnCount[roomName][turn[roomName]] += 1
+        }
+        firstBlood[roomName] = result.firstblood
         
-        let nextturn = (player+1)%4
+        let nextturn = player
+        if(turnCount[roomName][turn[roomName]] == 0){
+            nextturn = (nextturn+1)%4
+            turnCount[roomName][nextturn] = 1
+        }
         turn[roomName] = nextturn
-        console.log('next turn is of ')
-        console.log(nextturn)
+        
         const rdata = {
             newgameState: newgameState,
             nextturn: nextturn,
+            turncnt: turnCount[roomName][turn[roomName]],
+            fblood: firstBlood[roomName],
         }
         io.sockets.to(roomName).emit('updateGame', rdata)
     }) 

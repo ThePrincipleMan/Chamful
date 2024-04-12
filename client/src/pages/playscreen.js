@@ -41,7 +41,7 @@ for (let i = 0; i < 5; i += 1) {
     tokenPosition.push(tmparr)
 }
 
-const dieValues = [1, 2, 3, 4, 8]
+const dieValues = [1, 2, 3, 1, 2, 3, 4, 8]
 
 const socket = io.connect("http://localhost:3001")
 
@@ -56,12 +56,14 @@ function PlayScreen() {
     const [userName, setUserName] = useState("")
     const [gamecode, setGamecode] = useState(0)
     const [room, setRoom] = useState()
-    const [turn, setTurn] = useState()
+    const [turn, setTurn] = useState(0)
+    const [turncnt, setTurncnt] = useState(0)
     const [die, setDie] = useState(0)
     const [zero, setZero] = useState("s")
     const [one, setOne] = useState("s")
     const [two, setTwo] = useState("s")
     const [three, setThree] = useState("s")
+    const [firstBlood, setFirstBlood] = useState([false,false,false,false])
     //const socket = io("http://localhost:3001")
     //const [socket, setSocket] = useState(io.connect("http://localhost:3001"))
 
@@ -87,6 +89,7 @@ function PlayScreen() {
             setOne(data.one)
             setTwo(data.two)
             setThree(data.three)
+            setTurncnt(data.turncnt)
         })
 
         socket.on('updateDie', data => {
@@ -95,14 +98,34 @@ function PlayScreen() {
             // console.log(die)      // quick enough therefore displaying outdated value in die
             setRolled(true)
             setTurn(data.turn)
+            setTurncnt(data.turncnt)
         })
 
         socket.on('updateGame', data => {
             setTokens(data.newgameState)
             setRolled(false)
+            setDie(0)
             setTurn(data.nextturn)
+            setTurncnt(data.turncnt)
+            setFirstBlood(data.fblood)
+            console.log(firstBlood)
         })
 
+        socket.on('endGame', data => {
+            if(userColor === data.winner){
+                Swal.fire({
+                    title: "You Have Won the Game!!",
+                    text: "Congratulations, you have won the game",
+                    icon: "success"
+                })
+            }
+            else{
+                Swal.fire({
+                    title: "better luck next time",
+                    text: 'Someone else won this game',
+                })
+            }
+        })
 
         return () => {
             socket.off('gameCode')
@@ -110,6 +133,7 @@ function PlayScreen() {
             socket.off('startGame')
             socket.off('updateDie')
             socket.off('updateGame')
+            socket.off('endgame')
         }
     }, [])
 
@@ -135,6 +159,7 @@ function PlayScreen() {
         console.log('flag3')
         socket.emit('joinGame', data)
         console.log('flag4')
+        // here do if else statement for when the input game code is incorrect
         document.getElementById('joinwindow').style.display = "none"
         document.getElementById('gamescreen').style.display = "flex"
     }
@@ -144,7 +169,7 @@ function PlayScreen() {
         console.log(userColor)
         console.log(turn)
         if (turn === userColor && rolled === false) {
-            const idx = Math.floor((Math.random() * 4))
+            const idx = Math.floor((Math.random() * 8))
             setRolled(true)
             //setDie(dieValues[die])
             socket.emit('rollDie', { idx: idx, turn: turn, })
@@ -155,6 +180,8 @@ function PlayScreen() {
         //console.log(tokenPosition[row][col]['yellow'])
         console.log('rolled')
         console.log(rolled)
+        if(row === 2 && col === 2)
+            return;
         if (turn === userColor && rolled && Object.keys(tokens[row][col][colorArray[userColor]]).length > 0) {
             //console.log('inside handlemove')
             const data = {
@@ -223,6 +250,17 @@ function PlayScreen() {
 
             <div id='gamescreen'>
                 <div className='leftscreen'>
+                    <div className='gamecode'>GameCode - {gamecode}</div>
+                    <div className='playerlist'>
+                        <div className='yellow'>
+                            {zero}
+                        </div>
+                        <div className='green'>{one}{firstBlood[1]}</div>
+                        <div className='red'>{two}{firstBlood[2]}</div>
+                        <div className='blue'>{three}{firstBlood[3]}</div>
+                    </div>
+                </div>
+                <div className='middlescreen'>
                     <div className='board'>
                         <div className='square-wrapper'>
                             {gameState.map((arr, rowIndex) =>
@@ -244,17 +282,22 @@ function PlayScreen() {
                     </div>
                 </div>
                 <div className='rightscreen'>
-                    <div className='gamecode'>{gamecode}</div>
-                    <div className='playerlist'>
-                        <div className='yellow'>{zero}</div>
-                        <div className='green'>{one}</div>
-                        <div className='red'>{two}</div>
-                        <div className='blue'>{three}</div>
-                    </div>
                     <div id='dice'>
                         <div>{die}</div>
-                    <div onClick={rollDie}>Roll</div>
-                </div>
+                        <div className="rollbtn" onClick={rollDie}>Roll</div>
+                        <div>
+                            <div>Turn</div>
+                            <div className={`${colorArray[turn]}`}>{colorArray[turn]}</div>
+                        </div>
+                        <div>
+                            <div>You Are</div>
+                            <div className={`${colorArray[userColor]}`}>{colorArray[userColor]}</div>
+                        </div>
+                        <div>
+                            <div>Rolls remaining</div>
+                            <div>{turncnt}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

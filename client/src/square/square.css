@@ -16,21 +16,21 @@
 }
 
 .neutral{
-    background-color: none;
+    
 }
 
-.yellow{
-    background-color: yellow;
+.yellowbg{
+    background-color: rgb(255, 255, 121);
 }
 
-.blue{
-    background-color: blue;
+.bluebg{
+    background-color: rgb(87, 87, 255);
 }
 
-.green{
-    background-color: green;
+.greenbg{
+    background-color: rgb(102, 239, 102);
 }
 
-.red{
-    background-color: red;
+.redbg{
+    background-color: rgb(255, 103, 103);
 }

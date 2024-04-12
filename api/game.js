@@ -37,12 +37,18 @@ export function initializeGame() {
     return tokenPosition
 }
 
-function next(row,col,turn,firstBlood){
+function next(row,col,turn,firstBlood,die){
+    // special endcase when goti at the last step before final home. 
+    if(die == 0 && finalCell[turn][0] === row && finalCell[turn][1] === col){
+        return [2,2]
+    }
+    // normal cases start here
     if(row === gateway[turn][0] && col === gateway[turn][1] && firstBlood[turn]){
         return innerCell[turn]     //handling innercell entry
     }
     if(row === finalCell[turn][0] && col === finalCell[turn][1]){
-        // means we have reached the end
+        // means we have reached the penultimatum cell not the end itself
+        // this case handled at the top
     }
     if(row === 4 || row === 0 || col === 4 || col === 0){
         // we in outer ring
@@ -113,9 +119,10 @@ function next(row,col,turn,firstBlood){
 
 export function playerMove(row,col,die,turn,tokenpos,firstBlood){
     let nexrow = row,nexcol = col
+    let killsome = false;
     while(die){
         die -= 1
-        let temp = next(nexrow, nexcol,turn,firstBlood)
+        let temp = next(nexrow,nexcol,turn,firstBlood,die)
         nexrow = temp[0]
         nexcol = temp[1]
     } 
@@ -123,16 +130,28 @@ export function playerMove(row,col,die,turn,tokenpos,firstBlood){
     tokenpos[nexrow][nexcol][colorArray[turn]].push(1)
 
     // handle killing of comrads
-    for(let i = 0; i<4; i++){
-        if(i === turn)
-            continue
-        let ln = Object.keys(tokenpos[nexrow][nexcol][colorArray[i]]).length
-        while(ln){
-            ln -= 1
-            firstBlood[i] = true
-            tokenpos[nexrow][nexcol][colorArray[i]].pop()
-            tokenpos[home[i][0]][home[i][1]][colorArray[i]].push(1)
+    if((nexrow === 4 && nexcol === 2) || (nexrow === 2 && nexcol === 4) || (nexrow === 2 && nexcol === 0) || (nexrow === 0 && nexcol === 2) || (nexrow === 2 && nexcol === 2)){
+        // dont kill as this is home
+    }
+    else{ 
+        for(let i = 0; i<4; i++){
+            if(i === turn)
+                continue
+            let ln = Object.keys(tokenpos[nexrow][nexcol][colorArray[i]]).length
+            while(ln){
+                ln -= 1
+                killsome = true;
+                firstBlood[turn] = true
+                tokenpos[nexrow][nexcol][colorArray[i]].pop()
+                tokenpos[home[i][0]][home[i][1]][colorArray[i]].push(1)
+            }  
         }
     }
-    return tokenpos
+    
+    let res = {
+        tokenpos: tokenpos,
+        killsome: killsome,
+        firstblood: firstBlood,
+    }
+    return res
 }
