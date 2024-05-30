@@ -12,6 +12,7 @@ The frontend for the project is created using reactjs framework for quick and ea
 Backend is powered by Node.js with WebSockets being used for its near realtime response. Various different functions are implemented for various different steps associated with the game, called mainly using websocket .on functionality.
 
 ## Website Link
-Backend hosted on render.com
-Frontend hosted on netlify.com
-Link - https://chamful.netlify.app/
+Backend hosted on render.com  
+Frontend hosted on netlify.com  
+Link - https://chamful.netlify.app/  
+*note that the backend may take upto a couple of minutes to activate and be able to process your requests
