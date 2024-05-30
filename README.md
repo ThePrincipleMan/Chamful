@@ -1,7 +1,7 @@
 # Chamful : An Indian Ludo
 
 ## Introduction
-Chamful is a popular board game played predominantly in Maharashtra under various different name. I created this project to learn WebSockets while also being able to play it with my family, wherever we may be.
+Chamful is a popular board game played predominantly in Maharashtra under various different name. I created this project to learn WebSockets while also being able to play the game with my family, wherever we may be.
 
 ## Overview
 
