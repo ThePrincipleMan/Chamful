@@ -43,9 +43,7 @@ for (let i = 0; i < 5; i += 1) {
 
 const dieValues = [1, 2, 3, 1, 2, 3, 4, 8]
 
-const socket = io.connect("http://localhost:3001")
-
-
+const socket = io.connect("http://localhost:3001/", {'timeout':500000000, 'connect timeout': 500000000}) // to prevent conneciton from timing out when switch tabs
 
 // tokenPosition[0][2]['yellow'].push(1)
 // tokenPosition[3][0]['red'].push(1)

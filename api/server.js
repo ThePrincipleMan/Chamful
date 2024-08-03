@@ -13,7 +13,7 @@ const httpServer = createServer(app)
 
 const io = new Server(httpServer, {
     cors: {
-        origin: ["http://localhost:3000"],
+        origin: '*',
     },
 }) 
 
@@ -145,7 +145,9 @@ io.on("connection", client => {
         //     return
         let result = playerMove(data.row, data.col, die, player, currentState, fblood) 
         const newgameState = result.tokenpos
-        if(Object.keys(newgameState[2][2][colorArray[player]]) === 4){
+        if(Object.keys(newgameState[2][2][colorArray[player]]).length === 4){
+            console.log("game is won by")
+            console.log(colorArray[player])
             const ndata = {
                 winner: player,
             }
@@ -175,7 +177,7 @@ io.on("connection", client => {
 
 })
 
-httpServer.listen(3001) 
+io.listen(3001)
  
 
 // app.listen(3001, () => {

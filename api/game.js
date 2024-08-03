@@ -4,11 +4,11 @@ export default {
     initializeGame,
 }
 
-const home = [[4,2],[2,0],[0,2],[2,4]]
+const home = [[4,2],[2,4],[0,2],[2,0]]
 
-const gateway = [[4,1],[1,0],[0,3],[3,4]]
-const innerCell = [[3,1],[1,1],[1,3],[3,3]]              //represents inner cell token will enter in on going through gateway
-const finalCell = [[3,2],[2,1],[1,2],[2,3]]   // sort of like antim pag for tokens
+const gateway = [[4,1],[3,4],[0,3],[1,0]]
+const innerCell = [[3,1],[3,3],[1,3],[1,1]]              //represents inner cell token will enter in on going through gateway
+const finalCell = [[3,2],[2,3],[1,2],[2,1]]   // sort of like antim pag for tokens
 
 const innerRing = [[]]
 

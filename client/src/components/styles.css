@@ -85,6 +85,9 @@
 }
 
 #dice{
+    padding: 2rem;
+    background-color: whitesmoke;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
