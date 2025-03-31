@@ -5,7 +5,7 @@
 }
 
 #playscreenpage{
-    background-color: blueviolet;
+    background-color: rgb(141, 226, 43);
     min-height: 100vh;
     display: flex;
     align-items: center;
