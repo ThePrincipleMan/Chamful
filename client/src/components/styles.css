@@ -5,7 +5,7 @@
 }
 
 #playscreenpage{
-    background-color: blueviolet;
+    background-color: #101414;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -49,6 +49,7 @@
 
 .button:hover{
     cursor: pointer;
+    background-color: aqua;
 }
 
 .joinroomform{
@@ -110,19 +111,19 @@
 }
 
 .yellow{
-    background-color: yellow;
+    background-color: #ffd93e;
 }
 
 .blue{
-    background-color: blue;
+    background-color: #3da4fe;
 }
 
 .red{
-    background-color: red;
+    background-color: #ff3737;
 }
 
 .green{
-    background-color: green;
+    background-color: #73dc2f;
 }
 
 

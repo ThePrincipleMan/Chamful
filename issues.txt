@@ -1,5 +1,5 @@
 2) Various styling issues and choices to be sorted.
-3) green chi extra goti while aai playing so sort that out (did not encounter it again)
+3) 
 4)(solved) Crashed midway (sockets kept timing out while tab closed (most probably))  
 5)(solved) order of play is in reverse, fix this (fix seems to be working)
 6)(solved (seems so)) check tod functionality (frontend me sab false dikha raha)(did not find any proof)

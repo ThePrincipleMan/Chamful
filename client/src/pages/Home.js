@@ -2,7 +2,7 @@ import React from 'react'
 import {io} from "socket.io-client"
 
 function Home(){
-    const socket = io("http://localhost:3001")
+    const socket = io("https://chamful.onrender.com")
 
   return (
     <>

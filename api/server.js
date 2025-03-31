@@ -47,7 +47,6 @@ io.on("connection", client => {
         dieState[roomName] = 0
         firstBlood[roomName] = [false,false,false,false]
         client.join(roomName)
-        console.log('bflag1')
         console.log(Rooms[roomName])
         client.emit('gameCode', roomName)
 

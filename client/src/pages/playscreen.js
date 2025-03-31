@@ -43,7 +43,7 @@ for (let i = 0; i < 5; i += 1) {
 
 const dieValues = [1, 2, 3, 1, 2, 3, 4, 8]
 
-const socket = io.connect("http://localhost:3001/", {'timeout':500000000, 'connect timeout': 500000000}) // to prevent conneciton from timing out when switch tabs
+const socket = io.connect("https://chamful.onrender.com", {'timeout':500000000, 'connect timeout': 500000000}) // to prevent conneciton from timing out when switch tabs
 
 // tokenPosition[0][2]['yellow'].push(1)
 // tokenPosition[3][0]['red'].push(1)
@@ -57,10 +57,10 @@ function PlayScreen() {
     const [turn, setTurn] = useState(0)
     const [turncnt, setTurncnt] = useState(0)
     const [die, setDie] = useState(0)
-    const [zero, setZero] = useState("s")
-    const [one, setOne] = useState("s")
-    const [two, setTwo] = useState("s")
-    const [three, setThree] = useState("s")
+    const [zero, setZero] = useState("player 1")
+    const [one, setOne] = useState("player 2")
+    const [two, setTwo] = useState("player 3")
+    const [three, setThree] = useState("player 4")
     const [firstBlood, setFirstBlood] = useState([false,false,false,false])
     //const socket = io("http://localhost:3001")
     //const [socket, setSocket] = useState(io.connect("http://localhost:3001"))
