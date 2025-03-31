@@ -2,7 +2,7 @@ import React from 'react'
 import {io} from "socket.io-client"
 
 function Home(){
-    const socket = io("https://chamful.onrender.com")
+    const socket = io.connect("https://chamful.onrender.com", {'timeout':500000000, 'connect timeout': 500000000})
 
   return (
     <>

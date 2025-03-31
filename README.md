@@ -6,10 +6,15 @@ Chamful is a popular board game played predominantly in Maharashtra under variou
 ## Overview
 
 ### Frontend
-The frontend for the project is created using reactjs framework for quick and easy set up of an inital working frontend prototype. This helped me focus more of attention on the backend part. Further styling changes can be easily incorporated onto the existing codebase
-
+The frontend for the project is created using **reactjs** framework for quick and easy set up of an inital working frontend prototype. Coding of many functional aspects were also helped immensly due to functionality of react, for example - 
+- Concept of *state* in react proved useful in storing current state of the board and dice value locally
+- React grid helped hugely to create the actual board of Chamful
+  
 ### Backend
-Backend is powered by Node.js with WebSockets being used for its near realtime response. Various different functions are implemented for various different steps associated with the game, called mainly using websocket .on functionality.
+Backend is powered by **Node.js** along with WebSockets using **socket.io** being used for its near realtime response. Various different functions are implemented for various different steps associated with the game, called mainly using websockets *.on* functionality.
+- The game logic is coded into *server.js* file using javascript, along with other ancillary files like *game.js* and *data.js*
+- Socket.io's *.on* and *.emit* used to facilitate communication between frontend and backend
+- *.join* used to connect clients of a single **room** (i.e. 4 players of a game instance) together 
 
 ## Website Link
 Backend hosted on render.com  
