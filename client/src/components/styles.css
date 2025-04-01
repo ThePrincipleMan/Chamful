@@ -118,18 +118,26 @@
 
 .yellow{
     background-color: #ffd93e;
+    margin: 12px;
+    border-radius: 5px;
 }
 
 .blue{
     background-color: #3da4fe;
+    margin: 12px;
+    border-radius: 5px;
 }
 
 .red{
     background-color: #ff3737;
+    margin: 12px;
+    border-radius: 5px;
 }
 
 .green{
     background-color: #73dc2f;
+    margin: 12px;
+    border-radius: 5px;
 }
 
 body{
