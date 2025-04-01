@@ -47,7 +47,7 @@
     color: aqua;
     padding: 1rem;
     font-size: 2.3em;
-    margin-left: 1em;
+    margin: 1em;
 }
 
 .button:hover{
@@ -78,6 +78,7 @@
 
 .leftscreen{
     /* margin-right: 7vh; */
+    color: aliceblue;
     display: flex;
     flex-direction: column;
 }
@@ -138,10 +139,18 @@ body{
 
  h2,h4, h5, h6{
     font-size: 6em;
-    color: rgb(255, 0, 136);
+    color: rgb(255, 204, 0);
 }
 h3{
+    color: rgb(255, 204, 0);
     font-size: 5em;
+}
+.display{
+    width: 40%;
+    height: 1.7em;
+    background-color: rgb(255, 0, 111);
+    color: #1e2424;
+    font-size: 2em;
 }
 
 
