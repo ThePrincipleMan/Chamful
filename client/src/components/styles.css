@@ -1,7 +1,6 @@
 .square-wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    border-radius: 44px;
     /* gap: .2rem;   */
 }
 
@@ -47,6 +46,8 @@
 .button{
     color: aqua;
     padding: 1rem;
+    font-size: 2.3em;
+    margin-left: 1em;
 }
 
 .button:hover{
@@ -72,6 +73,7 @@
     justify-content: space-evenly;
     align-items: center;
     width: 100vw;
+    border-radius: 44px;
 }
 
 .leftscreen{
@@ -131,14 +133,15 @@
 
 body{
     font-family: 'Courier New', Courier, monospace;
-    font-style: bold;
+    font-weight: bolder;
 }
 
  h2,h4, h5, h6{
     font-size: 6em;
+    color: rgb(255, 0, 136);
 }
 h3{
-    font-size: 4em;
+    font-size: 5em;
 }
 
 
