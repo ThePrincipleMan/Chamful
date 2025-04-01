@@ -1,6 +1,7 @@
 .square-wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 44px;
     /* gap: .2rem;   */
 }
 
@@ -44,10 +45,12 @@
 }
 
 .button{
+    color: aqua;
     padding: 1rem;
 }
 
 .button:hover{
+    color: black;
     cursor: pointer;
     background-color: aqua;
 }
@@ -128,10 +131,14 @@
 
 body{
     font-family: 'Courier New', Courier, monospace;
+    font-style: bold;
 }
 
-h1, h2, h3, h4, h5, h6{
-    font-size: 2em;
+ h2,h4, h5, h6{
+    font-size: 6em;
+}
+h3{
+    font-size: 4em;
 }
 
 
