@@ -126,6 +126,14 @@
     background-color: #73dc2f;
 }
 
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-size: 2em;
+}
+
 
 @media screen and (max-width: 600px) {
     #gamescreen{
