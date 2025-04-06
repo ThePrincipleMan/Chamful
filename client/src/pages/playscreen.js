@@ -208,7 +208,7 @@ function PlayScreen() {
                     </div>
                 </div>
                 <div id="createroom">
-                    <h3>What name do you wish to take?</h3>
+                    <h4>What name do you wish to take?</h4>
                     <input className='display'
                         type="text"
                         placeholder='UserName'
@@ -221,7 +221,7 @@ function PlayScreen() {
 
                 </div>
                 <div id="joinroom">
-                    <h3>Input your username and room code carefullly</h3>
+                    <h4>Input your username and room code carefullly</h4>
                     <form className='joinroomform'>
                         <input className='display'
                             type="text"

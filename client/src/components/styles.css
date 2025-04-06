@@ -55,6 +55,7 @@
     color: black;
     cursor: pointer;
     background-color: aqua;
+    transition-delay: 50ms;
 }
 
 .joinroomform{
@@ -146,13 +147,17 @@ body{
     font-weight: bolder;
 }
 
- h2,h4, h5, h6{
+ h2,h5, h6{
     font-size: 6em;
-    color: rgb(255, 204, 0);
+    color: #ffd93e;
 }
 h3{
-    color: rgb(255, 204, 0);
+    color: #ffd93e;
     font-size: 5em;
+}
+h4{
+    color: #ffd93e;
+    font-size: 4em;
 }
 .display{
     width: 40%;
