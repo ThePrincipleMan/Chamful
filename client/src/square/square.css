@@ -20,17 +20,21 @@
 }
 
 .yellowbg{
-    background-color: rgb(255, 255, 121);
+    background-color: rgb(176, 176, 54);
+    margin: 3px;
 }
 
 .bluebg{
-    background-color: rgb(87, 87, 255);
+    background-color: rgb(49, 49, 103);
+    margin: 3px;
 }
 
 .greenbg{
-    background-color: rgb(102, 239, 102);
+    background-color: rgb(72, 122, 72);
+    margin: 3px;
 }
 
 .redbg{
-    background-color: rgb(255, 103, 103);
+    background-color: rgb(166, 42, 42);
+    margin: 3px;
 }

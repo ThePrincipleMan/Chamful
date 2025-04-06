@@ -5,7 +5,7 @@
 }
 
 #playscreenpage{
-    background-color: #5ecfcf;
+    background-color: #1e2424;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -44,12 +44,18 @@
 }
 
 .button{
+    color: aqua;
     padding: 1rem;
+    font-size: 2.3em;
+    margin: 1em;
+    border-radius: 10px;
 }
 
 .button:hover{
+    color: black;
     cursor: pointer;
     background-color: aqua;
+    transition-delay: 50ms;
 }
 
 .joinroomform{
@@ -69,10 +75,12 @@
     justify-content: space-evenly;
     align-items: center;
     width: 100vw;
+    border-radius: 44px;
 }
 
 .leftscreen{
     /* margin-right: 7vh; */
+    color: aliceblue;
     display: flex;
     flex-direction: column;
 }
@@ -96,7 +104,7 @@
 
 .rollbtn{
     padding: .5rem;
-    background-color: black;
+    background-color: rgb(22, 22, 22);
     color: white;
 }
 
@@ -112,18 +120,51 @@
 
 .yellow{
     background-color: #ffd93e;
+    margin: 12px;
+    border-radius: 5px;
 }
 
 .blue{
     background-color: #3da4fe;
+    margin: 12px;
+    border-radius: 5px;
 }
 
 .red{
     background-color: #ff3737;
+    margin: 12px;
+    border-radius: 5px;
 }
 
 .green{
     background-color: #73dc2f;
+    margin: 12px;
+    border-radius: 5px;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+ h2,h5, h6{
+    font-size: 6em;
+    color: #ffd93e;
+}
+h3{
+    color: #ffd93e;
+    font-size: 5em;
+}
+h4{
+    color: #ffd93e;
+    font-size: 4em;
+}
+.display{
+    width: 40%;
+    height: 1.7em;
+    background-color: rgb(255, 0, 111);
+    color: #1e2424;
+    font-size: 2em;
 }
 
 
